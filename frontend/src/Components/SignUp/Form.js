@@ -124,9 +124,6 @@ const FormFormik = () => {
                         <FormControlLabel value="2" control={<Radio />} label="Vendedor" />
                         <FormControlLabel value="3" control={<Radio />} label="Usuario" />
                     </RadioGroup>
-
-                    
-                
                {/*  <TextField
                   
                     fullWidth
