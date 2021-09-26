@@ -10,7 +10,7 @@ function App() {
      <Route exact path="/" component={SignUp} />
    </Switch>
    </BrowserRouter>
-  );
+  )
 }
 
 export default App;

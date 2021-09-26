@@ -5,6 +5,7 @@ import { Container, Box, Button, FormControl, FormLabel, FormControlLabel, FormH
 import { makeStyles } from '@material-ui/core/styles';
 import { Formik, Form, Field, useFormik } from 'formik';
 import * as Yup from 'yup';
+import styles from '../../shared/components/Color';
 
 const signUpSchema = Yup.object().shape({
     name: Yup.string().min(2, "Ingresa un nombre válido").required("Ingresa tu nombre completo"),
@@ -48,10 +49,16 @@ const FormFormik = () => {
         textField: {
             width: '25ch',
         },
+        buttonColor: {
+            backgroundColor: 'pink',
+            color: 'red'
+        }
     }));
 
 
     const classes = useStyles();
+    const btn = styles.btn();
+    const input = styles.input();
 
     return (
         <Container maxWidth="sm">
@@ -109,6 +116,7 @@ const FormFormik = () => {
                     onChange={formik.handleChange}
                     error={formik.touched.password && Boolean(formik.errors.password)}
                     helperText={formik.touched.password && formik.errors.password}
+                    className={input.name}
                 />
             
                     <FormLabel className={classes.withoutLabel} component="legend">Rol</FormLabel>
@@ -136,7 +144,7 @@ const FormFormik = () => {
                     error={formik.touched.store && Boolean(formik.errors.store)}
                     helperText={formik.touched.store && formik.errors.store}
                 /> */}
-                <Button className={classes.withoutLabel} color="primary" variant="contained" fullWidth type="submit">
+                <Button className={classes.withoutLabel, btn.pink} variant="contained" fullWidth type="submit">
                     Submit
                 </Button>
             </form>
