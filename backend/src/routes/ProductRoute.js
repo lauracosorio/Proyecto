@@ -67,7 +67,7 @@ productRoute.get(`/get-product-:sku`, async (req, res) => {
     if (!product) {
         res.status(400);
         res.json({
-            message: "Producto con ese SKU no éxiste",
+            message: "Producto con ese SKU no existe",
         });
         return;
     } else {
