@@ -38,7 +38,7 @@ userRoute.post('/register', [
 
 userRoute.post('/login', [
     check('email', 'Agrega un email valido').isEmail(),
-    check('password', 'La contraseña debe contener una mayúscula, un caracter especial, un número y más de 8 caracteres').matches(/^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,}$/)
+    check('password', 'Contraseña invalida')
 ], async (req, res) => {
 
     const err = validationResult(req);

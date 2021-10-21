@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 //import { Card, Container, Button } from "react-bootstrap";
 import clsx from 'clsx';
 import { Container, Box, Button, FormControl, FormLabel, FormControlLabel, FormHelperText, InputLabel, Input, TextField, Radio, RadioGroup } from '@material-ui/core';
@@ -18,6 +18,10 @@ const signUpSchema = Yup.object().shape({
 });
 
 const FormFormik = () => {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -112,8 +116,8 @@ const FormFormik = () => {
                     name="password"
                     label="Contraseña"
                     type="password"
-                    value={formik.values.password}
-                    onChange={formik.handleChange}
+                    //value={formik.values.password}
+                    onChange={e=>{setEmail(e.target.value); console.log(e.target.value)}}
                     error={formik.touched.password && Boolean(formik.errors.password)}
                     helperText={formik.touched.password && formik.errors.password}
                     className={input.name}
