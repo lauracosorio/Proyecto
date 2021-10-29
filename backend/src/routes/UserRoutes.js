@@ -12,7 +12,7 @@ userRoute.post('/register', [
     check('city', 'La ciudad es obligatorio').not().isEmpty(),
     check('email', 'Agrega un email valido').isEmail(),
     check('password', 'La contraseña debe contener una mayúscula, un caracter especial, un número y más de 8 caracteres').matches(/^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,}$/),
-    check('role', 'El rol es obligatorio').not().isEmpty(),
+    check('rol', 'El rol es obligatorio').not().isEmpty(),
 ], async (req, res) => {
 
     const err = validationResult(req);
@@ -31,8 +31,7 @@ userRoute.post('/register', [
         return;
     } else {
         let data = await userController.register(req.body)
-
-        res.json("Usuario Registrado Con Éxito")
+        res.json(data)
     }
 });
 

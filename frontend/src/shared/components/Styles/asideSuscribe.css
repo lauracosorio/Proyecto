@@ -1,0 +1,41 @@
+
+aside#aside_suscribe{
+    background-color: var(--color2);
+    width: 100%;
+}
+
+    aside#aside_suscribe form{
+        border: 1px solid var(--color4);
+        border-radius: 5px;
+        display: flex;
+        flex-direction: row;
+        height: 60px;
+
+        padding: 10px;
+    }
+
+        aside#aside_suscribe form input{
+            background-color: var(--color2);
+            border: none;
+            width: 90%;
+        }
+
+        aside#aside_suscribe form input:focus{
+            border: 1px solid var(--color2);
+            outline: none;
+            color: var(--color5);
+        }
+
+        aside#aside_suscribe p{
+            color: var(--color4);
+            padding-left: 3vw;
+            padding-top: 5px;
+        }
+
+
+@media only screen and (max-width: 750px) {
+    aside#aside_suscribe p{
+        padding: 30px 0 0 0;
+    }
+}
+        

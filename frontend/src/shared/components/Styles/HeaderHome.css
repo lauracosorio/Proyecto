@@ -1,0 +1,196 @@
+#header{
+    height: 70vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+#header .background_one, #header .background_two, #header .background_three{
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 70vh;
+    width: 100%;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: slider 15s linear infinite 0s;
+}
+
+    @keyframes slider {
+        0% {
+            opacity:1;
+        }
+        17% {
+            opacity:1;
+        }
+        25% {
+            opacity:0;
+        }
+        92% {
+            opacity:0;
+        }
+        100% {
+            opacity:1;
+        }
+    }
+        #header .header_content{
+            position: relative;
+            z-index: 4;
+        }
+
+        #header .background_one{
+            background-image: url(../images/header2.png);
+            animation-delay: 10s;
+        }
+
+        #header .background_two{
+            background-image: url(../images/header3.png);
+            animation-delay: 5s;
+        }
+
+        #header .background_three{
+            background-image: url(../images/header4.png);
+            animation-delay: 0s;
+        }
+
+        #header .background_degrade{
+            background-image: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 35%);
+            height: 70vh;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+    #header .header_title{
+        margin-top: 40px;
+    }
+
+    #header .header_subtitle{
+        margin-top: 16px;
+    }
+
+    #header .header_parag{
+        display: block;
+        margin-top: 16px;
+        padding-right: 40%;
+    }
+
+    #header .button{
+        margin: 45px 0 0 10px;
+    }
+
+    .slider_buttons{
+        display: flex;
+        justify-content: center;
+
+        padding-top: 50px;
+        height: 9px;
+    }
+
+        .slider_buttons span{
+            background-color: var(--color5);
+            border-radius: 4px;
+            display: block;
+            height: 8px;
+            margin: 0 7px;
+            width: 8px;
+            animation: slider_buttons 15s linear infinite 0s;
+        }
+
+        @keyframes slider_buttons {
+            0% {
+              background-color: var(--color8);
+            }
+            17% {
+                background-color: var(--color8);
+            }
+            25% {
+                background-color: var(--color5);
+            }
+            92% {
+                background-color: var(--color5);
+            }
+            100% {
+                background-color: var(--color8);
+            }
+        }
+
+        .slider_buttons span:nth-child(3) {
+            animation-delay: 10s;
+        }
+
+        .slider_buttons span:nth-child(2) {
+            animation-delay: 5s;
+        }
+
+        .slider_buttons span:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+@media only screen and (min-width: 0) and (max-width: 750px) {
+
+        #header{
+            height: 60vh;
+            padding-top: 70px;
+        }
+
+        #header .background_one, #header .background_two, #header .background_three{
+            height: 60vh;
+        }
+
+        #header .header_title{
+            margin-top: 20px;
+            padding-left: 5%;
+        }
+
+        #header .header_subtitle{
+            margin-top: 16px;
+            padding-left: 5%;
+        }
+
+        #header .header_parag{
+            display: block;
+            margin-top: 16px;
+            padding-right: 5%;
+            padding-left: 5%;
+        }
+
+        #header .button{
+            margin: 35px 0 0 10px;
+            margin-left: 5%;
+        }
+
+        .slider_buttons{
+            padding-top: 40px;
+        }
+}
+
+@media only screen and (min-width: 751px) and (max-width: 974px) {
+
+    #header{
+        height: 65vh;
+    }
+
+    #header .background_one, #header .background_two, #header .background_three{
+        height: 65vh;
+    }
+
+    #header .header_subtitle{
+        margin-top: 16px;
+        padding-left: 5%;
+    }
+
+    #header .header_parag{
+        display: block;
+        margin-top: 16px;
+        padding-right: 5%;
+        padding-left: 5%;
+    }
+
+    #header .button{
+        margin: 30px 0 0 10px;
+        margin-left: 5%;
+    }
+}

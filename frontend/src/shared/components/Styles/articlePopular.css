@@ -1,0 +1,128 @@
+
+#popular_products h1{
+    color: var(--color7) !important;
+    text-align: center;
+}
+
+    #popular_products .imagen_container{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+        #popular_products .imagen_container img:hover{
+            transition: var(--transitions);
+        }
+
+        #popular_products .imagen_container img:hover{
+            filter: brightness(0.5);
+        }
+
+        #popular_products .imagen_container span{
+            background-color: var(--color8);
+            border-radius: 5px;
+            color: var(--color1);
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 9px;
+            position: relative;
+            text-align: center;
+            top: -20px;
+            min-width: 100px;
+        }
+
+        #popular_products .imagen_container small{
+            color: var(--color4);
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+#list_products h1{
+    color: var(--color7) !important;
+    text-align: center;
+}
+
+    #list_products .imagen_container{
+        display: block;
+        margin: auto;
+    }
+
+        #list_products .imagen_container img:hover{
+            transition: var(--transitions);
+        }
+
+        #list_products .imagen_container img:hover{
+            filter: brightness(0.5);
+        }
+
+        #list_products .imagen_container span{
+            background-color: var(--color8);
+            border-radius: 5px;
+            color: var(--color1);
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 9px;
+            width: 12.5vw;
+        }
+
+        #list_products .buttons{
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            align-content: center;
+            justify-content: space-around;
+            flex-grow: 4;
+        }
+
+        #list_products .buttons span{
+            width: 7vw;
+            background-color: var(--color8);
+            border-radius: 5px;
+            color: var(--color1);
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 9px;
+            text-align: center;
+            align-self: center;
+        }
+
+        #list_products .imagen_container small{
+            color: var(--color4);
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        #list_products .editar {
+            display: block;
+            margin: auto;
+        }
+
+        .editar-img{
+            width: 15vw;
+        }
+       
+
+@media only screen and (max-width:750px) {
+    #list_products h1{
+        padding-top: 80px;
+    }
+
+    #list_products .editar {
+        width: 100vw;
+        display: block;
+        margin: auto;
+    }
+
+    .editar-img{
+        min-width: 50vw;
+        display: block;
+        margin: auto;
+    }
+
+    #list_products .buttons span{
+        width: 11vw;
+    }
+}

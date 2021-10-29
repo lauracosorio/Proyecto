@@ -1,0 +1,35 @@
+
+footer{
+    background-color: var(--color1);
+    height: 338px;
+    width: 100%;
+}
+
+    footer .footer_columns div li{
+        color: var(--color8);
+        min-height: 22px;
+        margin-top: 14px;
+        text-transform: capitalize;
+    }
+
+    footer .footer_columns div:nth-child(1) li:nth-child(2){
+        color: var(--color4);
+    }
+
+    footer .footer_columns div:nth-child(1) li:nth-child(4) img{
+        height: 20px;
+        margin-right: 10px;
+        width: 20px;
+    }
+
+    footer .footer_columns div li:nth-child(1) {
+        color: var(--color4);
+        font-weight: 500;
+        margin-bottom: 30px;
+        text-transform: uppercase;
+    }
+
+        footer .footer_columns div li:nth-child(1) img{
+            height: 28px;
+            width: 28px;
+        }

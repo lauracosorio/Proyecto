@@ -1,0 +1,56 @@
+
+    article#last_products h1{
+        color: var(--color7);
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+        article#last_products ol li{
+            color: var(--color6);
+            display: inline-block;
+            margin-right: 30px;
+        }
+
+            article#last_products ol li .breadcumb{
+                color: var(--color4) !important;
+                font-size: 1rem;
+            }
+            
+            article#last_products ol li:first-child .breadcumb{
+                color: var(--color8) !important;
+            }
+
+            article#last_products ol li .breadcumb:hover{
+                color: var(--color10) !important;
+            }
+
+        article#last_products .imagen_container{
+            display: flex;
+            flex-direction: column;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+            article#last_products img.imagen_fill{
+                height: 180px;
+            }
+
+            article#last_products img:hover{
+                transition: var(--transitions);
+            }
+
+            article#last_products img:hover{
+                filter: brightness(0.5);
+            }
+
+            article#last_products h5{
+                font-size: 1.1rem;
+                margin-top: 22px;
+            }
+
+            article#last_products small{
+                color: var(--color4);
+                font-size: 0.9rem;
+                font-weight: 500;
+                text-transform: uppercase;
+            }

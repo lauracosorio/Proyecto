@@ -1,9 +1,15 @@
 import React from 'react'
-import Form from '../Components/SignUp/Form';
+import Footer from '../Components/Footer/Footer';
+import Nav from '../Components/Home/Nav';
+import SignUpForm from '../Components/SignUp/SignUpForm';
 
 function SignUp() {
-    return(
-        <Form />
+    return (
+        <>
+            <Nav />
+            <SignUpForm />
+            <Footer />
+        </>
     )
 }
 

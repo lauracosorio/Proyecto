@@ -1,0 +1,27 @@
+
+
+aside#aside_offer{
+    background-image: url(../images/aside1.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+    aside#aside_offer p{
+        color: var(--color4);
+    }
+
+    aside#aside_offer div:nth-child(2){
+        display: flex;
+        justify-content: center;
+    }
+
+        aside#aside_offer div:nth-child(2) .button{
+            align-self: center;
+        }
+
+@media only screen and (max-width: 750px) {
+    aside#aside_offer div:nth-child(2){
+        justify-content: flex-start;
+    }
+}

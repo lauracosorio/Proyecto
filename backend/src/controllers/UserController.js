@@ -2,7 +2,7 @@ import User from "../models/UserModel.js";
 import bcrypt from "bcryptjs";
 
 const register = async (user) => {
-    const { name, country, city, email, password, role, store } = user;
+    const { name, country, city, email, password, rol, store } = user;
 
     //encrypt password
     const salt = await bcrypt.genSalt(10);
@@ -15,7 +15,7 @@ const register = async (user) => {
         city: city,
         email: email,
         password: hashPassword,
-        role: role,
+        rol: rol,
         store: store
     })
 
@@ -24,7 +24,7 @@ const register = async (user) => {
 }
 
 const updateUser = async (user) => {
-    const { name, country, city, email, password, role, store } = user;
+    const { name, country, city, email, password, rol, store } = user;
 
     //encrypt password
     const salt = await bcrypt.genSalt(10);
@@ -35,7 +35,7 @@ const updateUser = async (user) => {
         country: country,
         city: city,
         password: hashPassword,
-        role: role,
+        rol: rol,
         store: store
     })
 
@@ -51,7 +51,8 @@ const login = async (user) => {
     if (!validPassword) {
         return "Contraseña Invalida";
     } else {
-        return "Login completado con éxito"
+        return userData;
+       // return "Login completado con éxito"
     }
 }
 
