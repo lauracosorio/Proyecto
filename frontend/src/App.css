@@ -434,11 +434,12 @@ aside  {
   color: var(--color1);
 }
 .input-text {
-  padding: 1rem;
+  padding: 0;
   border: none;
   border-radius: .5rem;
   flex: 1;
   width: 100%;
+  
 }
 
 /** TAREAS LISTADO **/
@@ -556,9 +557,9 @@ aside  {
     }
 
 .contenedor-form {
-    padding: 5rem 3rem;
+    padding: 5rem 2rem;
     max-width: 500px;
-    width: 95%;
+    width: 98%;
     background-color: var(--color1);
     border-radius: 1rem;
     opacity: 0.8;
@@ -584,8 +585,9 @@ aside  {
 .campo-form input[type="email"], 
 .campo-form input[type="text"] {
   border: 1px solid #e1e1e1;
-  padding: 1rem;
+  padding: 1px;
   flex: 1;
+  min-width: 7em;
 }
 
 .enlace-cuenta {
@@ -598,3 +600,4 @@ aside  {
 .enlace-cuenta:hover {
   color: var(--color9);
 }
+

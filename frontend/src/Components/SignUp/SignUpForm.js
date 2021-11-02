@@ -8,6 +8,8 @@ import { saveToLocal } from "../../utils/localStorage";
 const SignUpForm = () => {
 
     //State Iniciar Sesion
+    let expresion_correo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.+[a-zA-Z0-9-.]+$/;
+    let expresion_password = /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,}$/;
     const [nombre, setNombre] = useState("");
     const [email, setEmail] = useState("");
     const [pais, setPais] = useState("");
@@ -15,6 +17,46 @@ const SignUpForm = () => {
     const [rol, setRol] = useState("");
     const [nombreTienda, setNombreTienda] = useState("");
     const [password, setPassword] = useState("");
+    const [fallo1, guardarFallo1] = useState(false);
+    const [error1, guardarError1] = useState();
+
+    const datosConsulta1 = (dato1, dato2, dato3, dato4, dato5, dato6 ) => {
+        if (dato1 === '' || dato2 === '' || dato3 === '' || dato4 === '', dato5 === '' || dato6 === '') {
+            guardarFallo1(true);
+            guardarError1("Todos los campos son requeridos");
+            console.log(error1)
+            return;
+        }
+
+        if (!expresion_correo.test(dato2)) {
+            guardarFallo1(true);
+            guardarError1("Por favor digite un email valido")
+            return;
+        }
+
+        if(dato5.length <  8){
+            guardarFallo1(true);
+            guardarError1("Digite Password mayor a 8 caracteres")
+            return;    
+        }
+
+        if (!expresion_password.test(dato5)) {
+            guardarFallo1(true);
+            guardarError1("Incluya mayusculas y caracteres especiales")
+            return; 
+        }
+
+        guardarError1(false);
+    }
+
+    let componente;
+    if (fallo1) {
+        componente = error1
+        console.log(componente)
+    } else {
+        componente = null
+    }
+
 
     const register = async () => {
 
@@ -47,6 +89,7 @@ const SignUpForm = () => {
 
     const onSubmit = e => {
         e.preventDefault();
+        datosConsulta1(nombre,email, pais, ciudad, password, rol);
     }
 
     return (
@@ -54,7 +97,8 @@ const SignUpForm = () => {
             <div className="contenedor-form sombra-dark" >
                 <h1>Obtener una cuenta</h1>
 
-                <form onSubmit={onSubmit}
+                <form
+                    onSubmit={onSubmit}
                 >
 
                     <div className="campo-form">
@@ -72,7 +116,7 @@ const SignUpForm = () => {
                     <div className="campo-form">
                         <label htmlFor="email">Email</label>
                         <input
-                            type="email"
+                            type="text"
                             id="email"
                             name="email"
                             placeholder="Correo Electrónico"
@@ -153,6 +197,9 @@ const SignUpForm = () => {
                 <Link to={'/login'} className="enlace-cuenta">
                     Volver a Iniciar Sesión
                 </Link>
+                <div className=" error" style={{ color: 'yellow', borderRadius: 9, textAlign: 'center' }} >
+                    {componente}
+                </div>
             </div>
         </div>
 

@@ -7,22 +7,38 @@ import { saveToLocal } from "../../utils/localStorage";
 
 const LoginForm = () => {
 
+    let expresion_correo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.+[a-zA-Z0-9-.]+$/;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, guardarError] = useState(false);
+    const [fallo, guardarFallo] = useState(false);
+    const [error, guardarError] = useState();
+
+
 
     const datosConsulta = (dato, dato1) => {
         if (dato === '' || dato1 === '') {
-            guardarError(true);
+            guardarFallo(true);
+            guardarError("Todos los campos son requeridos");
             return;
         }
-        guardarError(false);
+
+        if (!expresion_correo.test(dato)) {
+            guardarFallo(true);
+            guardarError("Por favor digite un email valido")
+            return;
+        }
+
+        if(dato1.length <  8){
+            guardarFallo(true);
+            guardarError("Digite Password mayor a 8 caracteres")
+            return;    
+        }
     }
 
     //Cargar componente condicionalmente
     let componente;
-    if (error) {
-        componente = <Error mensaje='Ambos campos son obligatorios'></Error>
+    if (fallo) {
+        componente = error
     } else {
         componente = null
     }
@@ -42,15 +58,15 @@ const LoginForm = () => {
                 const rol = res.data.rol;
                 saveToLocal("rol", rol);
 
-                if(rol.toLowerCase() === "vendedor"){
+                if (rol.toLowerCase() === "vendedor") {
                     const tienda = res.data.store;
                     saveToLocal("tienda", tienda);
                     window.location.href = "/seller-dashboard";
-                }else{
+                } else {
                     window.location.href = "/user-dashboard";
                 }
 
-                
+
             } else {
                 console.error("No se pudo iniciar sesión");
             }
@@ -77,13 +93,14 @@ const LoginForm = () => {
                     <div className="campo-form">
                         <label htmlFor="email">Email</label>
                         <input
-                            type="email"
+                            type="text"
                             id="email"
                             name="email"
                             placeholder="Correo Electrónico"
                             onChange={e => setEmail(e.target.value)}
 
                         />
+
                     </div>
 
                     <div className="campo-form">
@@ -105,10 +122,12 @@ const LoginForm = () => {
                 </form>
 
                 <div>
-                <Link to={`/sign-up`} className="enlace-cuenta">
-                    Registrarse
-                </Link>
-                {componente}
+                    <Link to={`/sign-up`} className="enlace-cuenta">
+                        Registrarse
+                    </Link>
+                    <div className=" error" style={{color: 'yellow',borderRadius: 9,textAlign:'center'}} >
+                        {componente}
+                    </div>
                 </div>
             </div>
         </div>
