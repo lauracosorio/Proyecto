@@ -1,42 +1,242 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import image1 from '../../../shared/components/images/producto8.png'
-import image2 from '../../../shared/components/images/producto8.png'
-import image3 from '../../../shared/components/images/producto8.png'
+import { Button, Modal } from 'react-bootstrap';
+import apiBaseUrl from '../../../utils/Api';
+import axios from 'axios';
+import { getFromLocal } from "../../../utils/localStorage";
+import UpdateProduct from "../Modals/UpdateProduct";
+import DeleteProduct from "../Modals/DeleteProduct";
 
 const ArticleNew = () => {
+    //Modal 
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+    const [nombre, setNombre] = useState("");
+    const [sku, setSku] = useState("");
+    const [stock, setStock] = useState("");
+    const [price, setPrice] = useState("");
+    const [category, setCategory] = useState("");
+    const [store, setStore] = useState("");
+    const [image, setImage] = useState("");
+    const [fallo1, guardarFallo1] = useState(false);
+    const [error1, guardarError1] = useState();
+    const [data, setData] = useState();
+
+    const [products, setProducts] = useState([]);
+    const tienda = getFromLocal("tienda");
+
+    useEffect(() => {
+        getProducts();
+    }, [tienda]);
+
+
+    const getProducts = () => {
+        axios
+            .get(`${apiBaseUrl}/get-products-${tienda}`)
+            .then((res) => {
+                setProducts(res.data);
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
+
+
+    let componente;
+    if (fallo1) {
+        componente = error1
+        console.log(componente)
+    } else {
+        componente = null
+    }
+
+    const onSubmit = e => {
+        e.preventDefault();
+        //datosConsulta1(nombre, sku, stock, price, category, store, image);
+        if (nombre === '' || sku === '' || stock === '', price === '', category === '', store === '', image === '') {
+            guardarFallo1(true);
+            guardarError1("Todos los campos son requeridos")
+
+        } else {
+            e.target.reset()
+            setNombre('');
+            setSku('');
+            setStock('');
+            setPrice('');
+            setCategory('');
+            setStore('');
+            setImage('');
+            guardarFallo1(false);
+
+        }
+    }
+
+    const registerProducts = async () => {
+
+        try {
+            axios.post(`${apiBaseUrl}/register-product`, {
+                name: nombre,
+                sku: sku,
+                stock: stock,
+                price: price,
+                category: category,
+                store: tienda,
+                image: image
+            }).then((res) => {
+                setData(res.data);
+                console.log(res.data)
+                getProducts();
+                handleClose();
+            }).catch((error) => {
+                console.error(error)
+                componente = "Error al crear el producto"
+            })
+        } catch (e) {
+            componente = "Error al crear el producto"
+            console.log(e)
+        }
+    }
+
     return (
-
         <article id="popular_products">
-            <div className="container padding_bottom_box">
+            <div className="container">
                 <div className="row margin_bottom">
-                    <h1>Productos Populares</h1>
-                </div>
-                <div className="row">
-                    <div className="col-12 col-sm-4 col-md-4 imagen_container margin_bottom">
-                        <a href="/"><img className="imagen_fill" src={image1} alt="Popular product" /></a>
-                        <span>$1.200.000</span>
-                        <h5>Nombre producto</h5>
-                        <small>Categoría</small>
-                    </div>
-                    <div className="col-12 col-sm-4 col-md-4 imagen_container margin_bottom">
-                        <a href="/"><img className="imagen_fill" src={image2} alt="Popular product" /></a>
-                        <span>$1.200.000</span>
-                        <h5>Nombre producto</h5>
-                        <small>Categoría</small>
-                    </div>
-                    <div className="col-12 col-sm-4 col-md-4 imagen_container margin_bottom">
-                        <a href="/"><img className="imagen_fill" src={image3} alt="Popular product" /></a>
-                        <span>$1.200.000</span>
-                        <h5>Nombre producto</h5>
-                        <small>Categoría</small>
-                        <div className="buttons">
-                        <span>Editar</span>
-                        <span>Eliminar</span>
-                        </div>
+                    <h1 className="col-md-10">Lista de Productos</h1>
+                    <Button  className="col-md-2" variant="danger"  onClick={handleShow}>
+                        Crear Producto
+                    </Button>
 
-                    </div>
-                    
+
+                    <Modal
+                        show={show}
+                        onHide={handleClose}
+                        backdrop="static"
+                        keyboard={false}
+                    >
+                        <Modal.Header closeButton>
+                            <Modal.Title>Crear Producto</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <form
+                                onSubmit={onSubmit}
+                            >
+                                <div className="campo-form">
+                                    <label htmlFor="nombre">Nombre</label>
+                                    <input
+                                        type="text"
+                                        id="nombre"
+                                        name="nombre"
+                                        placeholder="Nombre"
+                                        onChange={e => setNombre(e.target.value)}
+                                    />
+                                </div>
+
+                                <div className="campo-form">
+                                    <label htmlFor="sku">Sku</label>
+                                    <input
+                                        type="text"
+                                        id="sku"
+                                        name="sku"
+                                        placeholder="Sku"
+                                        onChange={e => setSku(e.target.value)}
+
+                                    />
+                                </div>
+
+                                <div className="campo-form">
+                                    <label htmlFor="stock">Stock</label>
+                                    <input
+                                        type="text"
+                                        id="stock"
+                                        name="stock"
+                                        placeholder="Stock"
+                                        onChange={e => setStock(e.target.value)}
+
+                                    />
+                                </div>
+
+                                <div className="campo-form">
+                                    <label htmlFor="ciudad">Precio</label>
+                                    <input
+                                        type="text"
+                                        id="precio"
+                                        name="precio"
+                                        placeholder="Precio"
+                                        onChange={e => setPrice(e.target.value)}
+
+                                    />
+                                </div>
+
+                                <div className="campo-form">
+                                    <label htmlFor="categoria">Categoria</label>
+                                    <input
+                                        type="text"
+                                        id="categoria"
+                                        name="categoria"
+                                        placeholder="Categoria"
+                                        onChange={e => setCategory(e.target.value)}
+
+                                    />
+                                </div>
+
+                                <div className="campo-form">
+                                    <label htmlFor="Store">Tienda</label>
+                                    <input
+                                        type="text"
+                                        id="store"
+                                        name="store"
+                                        placeholder={tienda}
+                                        disabled
+
+                                    />
+                                </div>
+
+                                <div className="campo-form">
+                                    <label htmlFor="image">Imagen</label>
+                                    <input
+                                        type="text"
+                                        id="image"
+                                        name="image"
+                                        placeholder="Image"
+                                        onChange={e => setImage(e.target.value)}
+
+                                    />
+                                </div>
+                            </form>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Close
+                            </Button>
+                            <Button variant="primary" onClick={registerProducts}>Registrar Producto</Button>
+                        </Modal.Footer>
+                    </Modal>
+                </div>
+
+                <div className="row">
+
+                    {products != undefined || products.length > 0 ?
+                        products.map((item, index) => {
+                            return (
+                                <div className="col-12 col-sm-4 col-md-4 imagen_container margin_bottom" key={index}>
+                                    <a href="/"><img className="imagen_fill" src={item.image} alt="Popular product" /></a>
+                                    <span>{item.price}</span>
+                                    <h5>{item.name}</h5>
+                                    <small>{item.category}</small>
+                                    <small>Stock:{item.stock}</small>
+                                    <div className="buttons ">
+                                        <UpdateProduct product = {item} />
+                                        <DeleteProduct product = {item} />
+                                    </div>
+                                </div>
+                            )
+                        })
+                        : null}
+
+
                 </div>
             </div>
         </article>

@@ -1,35 +1,50 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import image1 from "../../../../shared/components/images/producto6.png"
-import image2 from "../../../../shared/components/images/producto7.png"
-import image3 from "../../../../shared/components/images/producto8.png"
+import apiBaseUrl from '../../../../utils/Api';
+import axios from 'axios';
+import { getFromLocal } from "../../../../utils/localStorage";
+import { Link } from "react-router-dom";
 
 const ArticlePopular = () => {
-    return(
+
+    const [products, setProducts] = useState([]);
+    const tienda = getFromLocal("tienda");
+
+    useEffect(() => {
+        axios
+            .get(`${apiBaseUrl}/get-products-${tienda}`)
+            .then((res) => {
+                setProducts(res.data);
+                console.log(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, [tienda]);
+
+    return (
         <article id="popular_products">
             <div className="container padding_bottom_box">
                 <div className="row margin_bottom">
-                    <h1>Productos Populares</h1>
+                    <h1>Mis Productos</h1>
                 </div>
                 <div className="row">
-                    <div className="col-12 col-sm-4 col-md-4 imagen_container margin_bottom">
-                        <a href="/"><img className="imagen_fill" src={image1} alt="Popular product"/></a>
-                        <span>$1.200.000</span>
-                        <h5>Nombre producto</h5>
-                        <small>Categoría</small>
-                    </div>
-                    <div className="col-12 col-sm-4 col-md-4 imagen_container margin_bottom">
-                        <a href="/"><img className="imagen_fill" src={image2} alt="Popular product"/></a>
-                        <span>$1.200.000</span>
-                        <h5>Nombre producto</h5>
-                        <small>Categoría</small>
-                    </div>
-                    <div className="col-12 col-sm-4 col-md-4 imagen_container margin_bottom">
-                        <a href="/"><img className="imagen_fill" src={image3} alt="Popular product"/></a>
-                        <span>$1.200.000</span>
-                        <h5>Nombre producto</h5>
-                        <small>Categoría</small>
-                    </div>
+
+                    {products != undefined || products.length > 0 ?
+                        products.map((item, index) => {
+                            return (
+                                <div className="col-12 col-sm-4 col-md-4 imagen_container margin_bottom" key={index}>
+                                    <Link to="/seller-dashboard"><img className="imagen_fill" src={item.image} alt="Popular product" /></Link>
+                                    <span>{item.price}</span>
+                                    <h5>{item.name}</h5>
+                                    <small>{item.category}</small>
+                                    <small>Stock:{item.stock}</small>
+                                    <div className="buttons ">
+                                    </div>
+                                </div>
+                            )
+                        })
+                        : null}
                 </div>
             </div>
         </article>

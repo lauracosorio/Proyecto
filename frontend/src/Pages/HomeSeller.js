@@ -15,15 +15,17 @@ import '../shared/components/Styles/articlePopular.css';
 import '../shared/components/Styles/asideOffer.css';
 import '../shared/components/Styles/asideSuscribe.css';
 import '../shared/components/Styles/footer.css';
+import NavDashboard from '../Components/Dashboard/NavDashboard';
 
-function Home() {
+function HomeSeller() {
     return (
         <>
-        <Nav/>
+        <NavDashboard/>
         <HeaderHome/>
         <section>
-          <ArticleNew/>
+          <ArticlePopular/>
           <AsideOffer/>
+          <ArticleNew/>
           <AsideSuscribe/>
         </section>
         <Footer/>
@@ -31,4 +33,4 @@ function Home() {
     )
 }
 
-export default Home;
+export default HomeSeller;

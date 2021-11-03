@@ -9403,7 +9403,7 @@
     "regenerator-runtime" "^0.13.7"
     "whatwg-fetch" "^3.4.1"
 
-"react-bootstrap@^2.0.0":
+"react-bootstrap@^2.0.0-rc.1":
   "integrity" "sha512-6nIIPxv36tvyL9T+7x167qTv9oU+wEwxxNgqcQSsbuMuwvXfg2Frt2mRMX3O/f0HCQmBu5Syy6UdClRS4fGqQA=="
   "resolved" "https://registry.npmjs.org/react-bootstrap/-/react-bootstrap-2.0.0.tgz"
   "version" "2.0.0"
@@ -10968,6 +10968,11 @@
     "unquote" "~1.1.1"
     "util.promisify" "~1.0.0"
 
+"sweetalert2@^11.1.9":
+  "integrity" "sha512-ox+BjtAbO8mJrbQH9TsNwMwLeTfV+ve33CVz/kKn5D/DhRiSqnw2rWL4HuBlh9Z4yqYlTD5viR5Z2K5D3avM7Q=="
+  "resolved" "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.1.9.tgz"
+  "version" "11.1.9"
+
 "symbol-tree@^3.2.4":
   "integrity" "sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw=="
   "resolved" "https://registry.npmjs.org/symbol-tree/-/symbol-tree-3.2.4.tgz"
@@ -11299,11 +11304,6 @@
   "integrity" "sha512-OdjXJxnCN1AvyLSzeKIgXTXxV+99ZuXl3Hpo9XpJAv9MBcHrrJOQ5kV7ypXOuQie+AmWG25hLbiKdwYTifzcfQ=="
   "resolved" "https://registry.npmjs.org/type-fest/-/type-fest-0.11.0.tgz"
   "version" "0.11.0"
-
-"type-fest@^0.13.1":
-  "integrity" "sha512-34R7HTnG0XIJcBSn5XhDd7nNFPRcXYRZrBB2O2jdKqYODldSzBAqzsWoZYYvduky73toYS/ESqxPvkDf/F0XMg=="
-  "resolved" "https://registry.npmjs.org/type-fest/-/type-fest-0.13.1.tgz"
-  "version" "0.13.1"
 
 "type-fest@^0.3.1":
   "integrity" "sha512-cUGJnCdr4STbePCgqNFbpVNCepa+kAVohJs1sLhxzdH+gnEoOd8VhbYa7pD3zZYGiURWM2xzEII3fQcRizDkYQ=="

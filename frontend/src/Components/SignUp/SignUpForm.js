@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import apiBaseUrl from '../../utils/Api';
-import Error from '../Error/Error';
 import { saveToLocal } from "../../utils/localStorage";
+import swal from "sweetalert2";
 
 const SignUpForm = () => {
 
@@ -36,13 +36,13 @@ const SignUpForm = () => {
 
         if(dato5.length <  8){
             guardarFallo1(true);
-            guardarError1("Digite Password mayor a 8 caracteres")
+            guardarError1("La contraseña debe contener más de 8 caracteres")
             return;    
         }
 
         if (!expresion_password.test(dato5)) {
             guardarFallo1(true);
-            guardarError1("Incluya mayusculas y caracteres especiales")
+            guardarError1("La contraseña debe contener una mayúscula, un caracter especial, un número y más de 8 caracteres")
             return; 
         }
 
@@ -67,7 +67,7 @@ const SignUpForm = () => {
             city: ciudad,
             password: password,
             rol: rol,
-            nameStore: nombreTienda
+            store: nombreTienda
         }).then((res) => {
 
             const nombre = res.data.name;
@@ -79,17 +79,36 @@ const SignUpForm = () => {
             if (rol.toLowerCase() === "vendedor") {
                 const tienda = res.data.store;
                 saveToLocal("tienda", tienda);
+                swal.fire({
+                    title: "Bienvenido!",
+                    text: "Registro completado con éxito",
+                    icon: "success",
+                    confirmButtonText: "Ok",
+                });
+                setTimeout(function () { window.location.href = "/seller-dashboard" }, 1000);
+            } else {
+                swal.fire({
+                    title: "Bienvenido!",
+                    text: "Registro completado con éxito",
+                    icon: "success",
+                    confirmButtonText: "Ok",
+                });
+                setTimeout(function () { window.location.href = "/user"; }, 1000);
             }
-
-            window.location.href = "/dashboard";
         }).catch((error) => {
+            swal.fire({
+                title: "Error!",
+                text: "No se pudo realizar el registro del usuario",
+                icon: "error",
+                confirmButtonText: "Ok",
+            });
             console.error(error);
         })
     }
 
     const onSubmit = e => {
         e.preventDefault();
-        datosConsulta1(nombre,email, pais, ciudad, password, rol);
+        datosConsulta1(nombre,email, pais, ciudad, password, rol, nombreTienda);
     }
 
     return (

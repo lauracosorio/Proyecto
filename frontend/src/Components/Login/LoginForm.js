@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import apiBaseUrl from '../../utils/Api';
 import axios from 'axios';
-import Error from '../Error/Error';
 import { saveToLocal } from "../../utils/localStorage";
+import swal from "sweetalert2";
 
 const LoginForm = () => {
 
@@ -28,10 +28,10 @@ const LoginForm = () => {
             return;
         }
 
-        if(dato1.length <  8){
+        if (dato1.length < 8) {
             guardarFallo(true);
             guardarError("Digite Password mayor a 8 caracteres")
-            return;    
+            return;
         }
     }
 
@@ -61,17 +61,39 @@ const LoginForm = () => {
                 if (rol.toLowerCase() === "vendedor") {
                     const tienda = res.data.store;
                     saveToLocal("tienda", tienda);
-                    window.location.href = "/seller-dashboard";
+                    swal.fire({
+                        title: "Bienvenido!",
+                        text: "Se pudo iniciar sesión correctamente",
+                        icon: "success",
+                        confirmButtonText: "Ok",
+                    });
+                    setTimeout(function () { window.location.href = "/seller-dashboard" }, 1000);
                 } else {
-                    window.location.href = "/user-dashboard";
+                    swal.fire({
+                        title: "Bienvenido!",
+                        text: "Se pudo iniciar sesión correctamente",
+                        icon: "success",
+                        confirmButtonText: "Ok",
+                    });
+                    setTimeout(function () { window.location.href = "/user"; }, 1000);
                 }
-
-
             } else {
+                swal.fire({
+                    title: "Error!",
+                    text: "Correo y/o contraseña inválidos",
+                    icon: "error",
+                    confirmButtonText: "Ok",
+                });
                 console.error("No se pudo iniciar sesión");
             }
 
         }).catch((error) => {
+            swal.fire({
+                title: "Error!",
+                text: "Correo y/o contraseña inválidos",
+                icon: "error",
+                confirmButtonText: "Ok",
+            });
             console.error(error)
         })
     }
@@ -125,7 +147,7 @@ const LoginForm = () => {
                     <Link to={`/sign-up`} className="enlace-cuenta">
                         Registrarse
                     </Link>
-                    <div className=" error" style={{color: 'yellow',borderRadius: 9,textAlign:'center'}} >
+                    <div className=" error" style={{ color: 'yellow', borderRadius: 9, textAlign: 'center' }} >
                         {componente}
                     </div>
                 </div>

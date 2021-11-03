@@ -15,11 +15,13 @@ import '../shared/components/Styles/articlePopular.css';
 import '../shared/components/Styles/asideOffer.css';
 import '../shared/components/Styles/asideSuscribe.css';
 import '../shared/components/Styles/footer.css';
+import NavDashboard from '../Components/Dashboard/NavDashboard';
+import NavDashboardUser from '../Components/Dashboard/NavDashboardUser';
 
-function Home() {
+function HomeUser() {
     return (
         <>
-        <Nav/>
+        <NavDashboardUser/>
         <HeaderHome/>
         <section>
           <ArticleNew/>
@@ -31,4 +33,4 @@ function Home() {
     )
 }
 
-export default Home;
+export default HomeUser;

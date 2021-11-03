@@ -13,6 +13,7 @@ userRoute.post('/register', [
     check('email', 'Agrega un email valido').isEmail(),
     check('password', 'La contraseña debe contener una mayúscula, un caracter especial, un número y más de 8 caracteres').matches(/^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,}$/),
     check('rol', 'El rol es obligatorio').not().isEmpty(),
+    check('store', 'La tienda es obligatorio').not().isEmpty(),
 ], async (req, res) => {
 
     const err = validationResult(req);

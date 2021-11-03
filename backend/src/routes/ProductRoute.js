@@ -12,8 +12,10 @@ productRoute.post('/register-product', [
     check('sku', 'El SKU es obligatorio').isNumeric().matches(/^\d+$/),
     check('stock', 'El producto debe tener stock').isNumeric().matches(/^\d+$/),
     check('price', 'El producto debe tener un precio valido').not().isEmpty(),
-    check('category', 'El producto debe contar con categoría'),
+    check('category', 'El producto debe contar con categoría').not().isEmpty(),
     check('store', 'El producto debe pertenecer a una tienda').not().isEmpty(),
+    check('image', 'El producto debe tener una imagen asociada').not().isEmpty(),
+
 ], async (req, res) => {
 
     const err = validationResult(req);
@@ -34,8 +36,7 @@ productRoute.post('/register-product', [
         return;
     } else {
         let data = await productController.registerProduct(req.body)
-        res.json("Producto Registrado con Éxito !!")
-        console.log(data)
+        res.json(data)
     }
 })
 
@@ -75,8 +76,28 @@ productRoute.get(`/get-product-:sku`, async (req, res) => {
         res.json(data)
     }
 })
+productRoute.get(`/get-products-:store`, async (req, res) => {
+
+    const store = req.params.store;
+    console.log(store)
+
+    const product = await Product.find({ store: store })
+
+    if (!product) {
+        res.status(400);
+        res.json({
+            message: "No hay productos registrados",
+        });
+        return;
+    } else {
+        let data = await productController.getProductByStore(req.params)
+        res.json(data)
+    }
+})
+
 productRoute.put(`/update-product-:sku`, async (req, res) => {
 
+    console.log(req)
     const sku = req.params.sku;
 
     const product = await Product.findOne({ sku })
@@ -88,7 +109,7 @@ productRoute.put(`/update-product-:sku`, async (req, res) => {
         });
         return;
     } else {
-        let data = await productController.updateProduct(req.body)
+        let data = await productController.updateProduct(req.body, sku)
         res.json(data)
     }
 })

@@ -1,7 +1,7 @@
 import Product from "../models/ProductModel.js";
 
 const registerProduct = async (product) => {
-    const { name, sku, stock, price, category, store } = product;
+    const { name, sku, stock, price, category, store, image } = product;
 
     const newProduct = new Product({
         name: name,
@@ -9,7 +9,8 @@ const registerProduct = async (product) => {
         stock: stock,
         price: price,
         category: category,
-        store: store
+        store: store,
+        image: image
     })
 
     await newProduct.save();
@@ -27,18 +28,28 @@ const getProductBySku = async (prod) => {
     return product
 }
 
-const updateProduct = async (product) => {
-    const { name, stock, price, category, store } = product;
+const getProductByStore = async (prod) => {
+    const { store } = prod;
+    const product = await Product.find({store: store})
+    return product
+}
 
-    await Product.findOneAndUpdate({
+const updateProduct = async (product, sku) => {
+    const { name, stock, price, category, store, image } = product;
+    const Sku = sku;
+    console.log(Sku);
+    console.log(product)
+
+    await Product.findOneAndUpdate({sku : sku },{
         name: name,
         stock: stock,
         price: price,
         category: category,
-        store: store
+        store: store,
+        image: image
     })
 
-    return "Usuario Actualizado con éxito!!";
+    return "Producto Actualizado con éxito!!";
 }
 
 const deleteProduct = async (product) => {
@@ -53,6 +64,7 @@ const productController = {
     registerProduct,
     getProducts,
     getProductBySku,
+    getProductByStore,
     updateProduct,
     deleteProduct
 }
