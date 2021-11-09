@@ -105,55 +105,57 @@ const LoginForm = () => {
     }
 
     return (
-        <div className="form-usuario">
-            <div className="contenedor-form sombra-dark" >
-                <h1 className="header-login">Iniciar Sesión</h1>
 
-                <form
-                    onSubmit={onSubmit}
-                >
-                    <div className="campo-form">
-                        <label htmlFor="email">Email</label>
-                        <input
-                            type="text"
-                            id="email"
-                            name="email"
-                            placeholder="Correo Electrónico"
-                            onChange={e => setEmail(e.target.value)}
-
-                        />
-
+        <article id="login" className="padding_top_box padding_bottom_box">
+            <div className="container">
+                <div className="row">
+                    <div className="col"></div>
+                    <div className="col-12 col-sm-10 col-md-8 col-lg-6">
+                        <div className="margin_bottom login_title">
+                            <h1>Iniciar Sesión</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad id quae reiciendis voluptates totam non dolor cupiditate magnam voluptate</p>
+                        </div>
+                        <form className="login_form margin_top" onSubmit={onSubmit}>
+                            <div className="mb-3">
+                                <label htmlFor="email" className="form-label">Correo electrónico</label>
+                                <input
+                                    type="email"
+                                    className="form-control"
+                                    id="email"
+                                    name="email"
+                                    aria-describedby="ayuda"
+                                    onChange={e => setEmail(e.target.value)} />
+                                <div id="ayuda" className="form-text">Nunca compartiremos tu correo con nadie</div>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="password" className="form-label">Contraseña</label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    className="form-control"
+                                    onChange={e => setPassword(e.target.value)}
+                                />
+                            </div>
+                            <div className="mb-3 form-check">
+                                <input type="checkbox" className="form-check-input" id="recordarme" />
+                                <label className="form-check-label" for="recordarme">Recordarme</label>
+                            </div>
+                            <div className="login_buttons">
+                                <button type="submit" className="button" onClick={loginPage}>Ingresar</button>
+                                <Link to={`/sign-up`} className="button">
+                                    Registrarse
+                                </Link>
+                            </div>
+                            <div className=" error" style={{ color: 'white', borderRadius: 9, textAlign: 'center' }} >
+                                    {componente}
+                                </div>
+                        </form>
                     </div>
-
-                    <div className="campo-form">
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Contraseña"
-                            onChange={e => setPassword(e.target.value)}
-
-                        />
-                    </div>
-                    <div className="campo-form">
-                        <input type="submit" className=" btn-primario btn-block" onClick={loginPage}
-                            value="Iniciar Sesión"
-                        />
-                    </div>
-                </form>
-
-                <div>
-                    <Link to={`/sign-up`} className="enlace-cuenta">
-                        Registrarse
-                    </Link>
-                    <div className=" error" style={{ color: 'yellow', borderRadius: 9, textAlign: 'center' }} >
-                        {componente}
-                    </div>
+                    <div className="col"></div>
                 </div>
             </div>
-        </div>
-
+        </article>
     );
 }
 

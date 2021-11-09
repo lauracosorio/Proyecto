@@ -3,7 +3,7 @@ import axios from "axios";
 import apiBaseUrl from '../../../utils/Api';
 import { getFromLocal } from "../../../utils/localStorage";
 import { Button, Modal } from 'react-bootstrap';
-
+import '../../../shared/components/Styles/update.css'
 
 const UpdateProduct = ({ product }) => {
 
@@ -26,7 +26,7 @@ const UpdateProduct = ({ product }) => {
     const tienda = getFromLocal("tienda");
 
     console.log(product)
-    
+
     const onSubmit = e => {
         e.preventDefault();
         //datosConsulta1(nombre, sku, stock, price, category, store, image);
@@ -73,20 +73,20 @@ const UpdateProduct = ({ product }) => {
 
     return (
         <>
-
-            <span data-target={`#id${product.sku}`} onClick={() => { 
-                handleShow(); 
-                setNombre(product.name)
-                setSku(product.sku)
-                setStock(product.stock)
-                setPrice(product.price)
-                setCategory(product.category)
-                setStore(product.store)
-                setImage(product.image)
+            <div className="product_item">
+                <button className="button_secundary" data-target={`#id${product.sku}`} onClick={() => {
+                    handleShow();
+                    setNombre(product.name)
+                    setSku(product.sku)
+                    setStock(product.stock)
+                    setPrice(product.price)
+                    setCategory(product.category)
+                    setStore(product.store)
+                    setImage(product.image)
                 }}>
-                Editar Producto
-            </span>
-
+                    Editar
+                </button>
+            </div>
             <Modal
                 show={show}
                 onHide={handleClose}
@@ -98,7 +98,37 @@ const UpdateProduct = ({ product }) => {
                     <Modal.Title>Crear Producto</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <form
+                    <form className="row g-3 registrar_form" onSubmit={onSubmit}>
+                        <div className="col-md-6">
+                            <label for="nombre_producto" className="form-label">Nombre del producto</label>
+                            <input type="text" className="form-control" name="nombre_producto" id="nombre_producto" maxLength="50" placeholder="Nombre del producto" required value={nombre} onChange={e => setNombre(e.target.value)} />
+                        </div>
+                        <div className="col-md-6">
+                            <label for="sku" className="form-label">SKU</label>
+                            <input type="number" className="form-control" name="sku" id="sku" maxLength="2" placeholder="1" required value={sku} onChange={e => setSku(e.target.value)} />
+                        </div>
+                        <div className="col-md-6">
+                            <label for="stock" className="form-label">Stock (cantidad disponible)</label>
+                            <input type="number" className="form-control" name="stock" id="stock" maxLength="2" placeholder="1" required value={stock} onChange={e => setStock(e.target.value)} />
+                        </div>
+                        <div className="col-md-6">
+                            <label for="precio" className="form-label">Precio</label>
+                            <input type="text" className="form-control" name="precio" id="precio" placeholder="$1'000.000" required value={price} onChange={e => setPrice(e.target.value)} />
+                        </div>
+                        <div className="col-md-6">
+                            <label for="categoria" className="form-label">Categoría del producto</label>
+                            <input id="categoria" name="categoria" className="form-control" required onChange={e => setCategory(e.target.value)} value={category} placeholder="Tecnología" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="image" class="form-label">Imágenes</label>
+                            <input class="form-control" type="text" id="image" name="image" required value={image} onChange={e => setImage(e.target.value)} placeholder="URL de la imágen" />
+                        </div>
+                        <div class="col-md-12">
+                            <label for="tienda" class="form-label">Tienda</label>
+                            <input class="form-control" type="text" id="tienda" name="tienda" placeholder={tienda} value={store} disabled />
+                        </div>
+                    </form>
+                    {/*  <form
                         onSubmit={onSubmit}
                     >
                         <div className="campo-form">
@@ -108,7 +138,7 @@ const UpdateProduct = ({ product }) => {
                                 id="nombre"
                                 name="nombre"
                                 placeholder="Nombre"
-                                value = {nombre}
+                                value={nombre}
                                 onChange={e => setNombre(e.target.value)}
                             />
                         </div>
@@ -191,13 +221,13 @@ const UpdateProduct = ({ product }) => {
 
                             />
                         </div>
-                    </form>
+                    </form> */}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button  onClick={updateProducts}>Actualizar Producto</Button>
+                    <Button variant="danger" onClick={updateProducts}>Actualizar Producto</Button>
                 </Modal.Footer>
             </Modal>
         </>

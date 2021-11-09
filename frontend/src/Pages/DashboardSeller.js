@@ -4,6 +4,7 @@ import InfoTienda from '../Components/Dashboard/sections/InfoTienda'
 import Footer from '../Components/Footer/Footer'
 import HeaderHome from '../Components/Home/HeaderHome'
 import Products from '../Components/Dashboard/sections/Products'
+import '../shared/components/Styles/product.css'
 
 export const DashboarSeller = () => {
     return (

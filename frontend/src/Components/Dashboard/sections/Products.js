@@ -74,6 +74,10 @@ const ArticleNew = () => {
         }
     }
 
+    const agregar = e => {
+        e.preventDefault();
+    }
+
     const registerProducts = async () => {
 
         try {
@@ -101,26 +105,60 @@ const ArticleNew = () => {
     }
 
     return (
-        <article id="popular_products">
-            <div className="container">
-                <div className="row margin_bottom">
-                    <h1 className="col-md-10">Lista de Productos</h1>
-                    <Button  className="col-md-2" variant="danger"  onClick={handleShow}>
-                        Crear Producto
-                    </Button>
+        <>
+            <article id="product_list" className=" padding_bottom_box">
+                <div className="container">
+                    <div className="row margin_bottom">
+                        <h1>Lista de productos</h1>
+                    </div>
+                    <div className="row filtrar">
+                        <form className="col-12 col-md-12 col-lg-8 filter_form" onSubmit={agregar}>
+                            <button className="button_secundary" onClick={handleShow}>Agregar</button>
+                        </form>
 
+                        <Modal
+                            show={show}
+                            onHide={handleClose}
+                            backdrop="static"
+                            keyboard={false}
+                        >
+                            <Modal.Header closeButton>
+                                <Modal.Title>Crear Producto</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
 
-                    <Modal
-                        show={show}
-                        onHide={handleClose}
-                        backdrop="static"
-                        keyboard={false}
-                    >
-                        <Modal.Header closeButton>
-                            <Modal.Title>Crear Producto</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <form
+                                <form className="row g-3 registrar_form" onSubmit={onSubmit}>
+                                    <div className="col-md-6">
+                                        <label for="nombre_producto" className="form-label">Nombre del producto</label>
+                                        <input type="text" className="form-control" name="nombre_producto" id="nombre_producto" maxLength="50" placeholder="Nombre del producto" required onChange={e => setNombre(e.target.value)} />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label for="sku" className="form-label">SKU</label>
+                                        <input type="number" className="form-control" name="sku" id="sku" maxLength="2" placeholder="1" required onChange={e => setSku(e.target.value)} />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label for="stock" className="form-label">Stock (cantidad disponible)</label>
+                                        <input type="number" className="form-control" name="stock" id="stock" maxLength="2" placeholder="1" required onChange={e => setStock(e.target.value)} />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label for="precio" className="form-label">Precio</label>
+                                        <input type="text" className="form-control" name="precio" id="precio" placeholder="$1'000.000" required onChange={e => setPrice(e.target.value)} />
+                                    </div>
+                                    <div className="col-md-6">
+                                        <label for="categoria" className="form-label">Categoría del producto</label>
+                                        <input id="categoria" name="categoria" className="form-control" required onChange={e => setCategory(e.target.value)} placeholder="Tecnología" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="image" class="form-label">Imágenes</label>
+                                        <input class="form-control" type="text" id="image" name="image" required onChange={e => setImage(e.target.value)} placeholder="URL de la imágen" />
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="tienda" class="form-label">Tienda</label>
+                                        <input class="form-control" type="text" id="tienda" name="tienda" placeholder={tienda} disabled />
+                                    </div>
+                                </form>
+
+                                {/*   <form
                                 onSubmit={onSubmit}
                             >
                                 <div className="campo-form">
@@ -205,41 +243,44 @@ const ArticleNew = () => {
 
                                     />
                                 </div>
-                            </form>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
-                                Close
-                            </Button>
-                            <Button variant="primary" onClick={registerProducts}>Registrar Producto</Button>
-                        </Modal.Footer>
-                    </Modal>
-                </div>
-
-                <div className="row">
+                            </form> */}
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleClose}>
+                                    Close
+                                </Button>
+                                <Button variant="danger" onClick={registerProducts}>Registrar Producto</Button>
+                            </Modal.Footer>
+                        </Modal>
+                    </div>
 
                     {products != undefined || products.length > 0 ?
                         products.map((item, index) => {
                             return (
-                                <div className="col-12 col-sm-4 col-md-4 imagen_container margin_bottom" key={index}>
-                                    <a href="/"><img className="imagen_fill" src={item.image} alt="Popular product" /></a>
-                                    <span>{item.price}</span>
-                                    <h5>{item.name}</h5>
-                                    <small>{item.category}</small>
-                                    <small>Stock:{item.stock}</small>
-                                    <div className="buttons ">
-                                        <UpdateProduct product = {item} />
-                                        <DeleteProduct product = {item} />
+
+
+                                <div className="row product_item">
+                                    <div className="col-6 col-md-3">
+                                        <img className="imagen_fill" src={item.image} alt="Popular product" />
+                                    </div>
+                                    <div className="col-5 col-md-3">
+                                        <span className="tag">{item.price}</span>
+                                        <h5>{item.name}</h5>
+                                        <small>{item.category}</small>
+                                        <small>Stock:{item.stock}</small>
+                                    </div>
+                                    <div className="col-4 col-md-6">
+                                        <UpdateProduct className="button_secundary" product={item} />
+                                        <DeleteProduct className="button_secundary" product={item} />
                                     </div>
                                 </div>
+
                             )
                         })
                         : null}
-
-
                 </div>
-            </div>
-        </article>
+            </article>
+        </>
 
     );
 }

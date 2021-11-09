@@ -1,0 +1,76 @@
+
+article#login .login_title{
+    text-align: center;
+}
+
+    article#login .login_title h1{
+        color: var(--color7);
+    }
+
+article#login .login_form{
+    background-color: var(--color1);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(150, 150, 150, 0.2);
+    padding: 30px;
+}
+
+    article#login .login_form .login_buttons{
+        display: flex;
+        justify-content: center;
+    }
+
+    article#login .login_form .login_buttons button{
+        margin-right: 15px;
+    }
+
+    article#login .login_form .login_buttons a.button{
+        background-color: var(--color1);
+        border: 1px solid var(--color8);
+        color: var(--color8) !important;
+    }
+
+    article#login .login_form .login_buttons a.button:hover{
+        background-color: var(--color8);
+        color: var(--color1) !important;
+    }
+
+        article#login form.login_form input[type="email"], article#login form.login_form input[type="password"], article#login form.login_form input[type="checkbox"]{
+            background-color: var(--color1);
+            border: 1px solid var(--color4);
+            box-shadow: none;
+            color: var(--color5) !important;
+        }
+
+        article#login form.login_form input[type="email"]:focus, article#login form.login_form input[type="password"]:focus{
+            background-color: rgba(40, 26, 202, 0.05);
+            border: 1px solid var(--color10) !important;
+            color: var(--color10) !important;
+            outline: none;
+        }
+
+        article#login form.login_form input[type="checkbox"]:checked{
+            background-color: var(--color10);
+            border: 1px solid var(--color10) !important;
+        }
+
+        article#login form.login_form input[type="checkbox"]:focus{
+            border: 1px solid var(--color4);
+        }
+        
+        article#login form.login_form .login_buttons button, article#login form.login_form .login_buttons .button{
+            box-shadow: none;
+            transition: var(--transitions);
+        }
+
+        article#login form.login_form .login_buttons button:hover{
+            background-color: var(--color10);
+            box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+            color: var(--color1) !important;
+        }
+
+        .error {
+            max-width: 600px;
+            margin: 2rem auto 0 auto;
+            background-color: rgb(245, 4, 4);
+            color: var(--blanco);
+          }

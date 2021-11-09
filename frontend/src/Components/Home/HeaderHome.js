@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const HeaderHome = ()=> {
     return(
-        <header id="header">
+        <header id="header" className="margin_bottom">
             <div className="background_one"></div>
             <div className="background_two"></div>
             <div className="background_three"></div>

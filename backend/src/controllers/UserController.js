@@ -3,7 +3,6 @@ import bcrypt from "bcryptjs";
 
 const register = async (user) => {
     const { name, country, city, email, password, rol, store } = user;
-
     //encrypt password
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(password, salt);

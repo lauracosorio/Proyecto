@@ -20,7 +20,7 @@ const SignUpForm = () => {
     const [fallo1, guardarFallo1] = useState(false);
     const [error1, guardarError1] = useState();
 
-    const datosConsulta1 = (dato1, dato2, dato3, dato4, dato5, dato6 ) => {
+    const datosConsulta1 = (dato1, dato2, dato3, dato4, dato5, dato6) => {
         if (dato1 === '' || dato2 === '' || dato3 === '' || dato4 === '', dato5 === '' || dato6 === '') {
             guardarFallo1(true);
             guardarError1("Todos los campos son requeridos");
@@ -34,16 +34,16 @@ const SignUpForm = () => {
             return;
         }
 
-        if(dato5.length <  8){
+        if (dato5.length < 8) {
             guardarFallo1(true);
             guardarError1("La contraseña debe contener más de 8 caracteres")
-            return;    
+            return;
         }
 
         if (!expresion_password.test(dato5)) {
             guardarFallo1(true);
             guardarError1("La contraseña debe contener una mayúscula, un caracter especial, un número y más de 8 caracteres")
-            return; 
+            return;
         }
 
         guardarError1(false);
@@ -108,120 +108,70 @@ const SignUpForm = () => {
 
     const onSubmit = e => {
         e.preventDefault();
-        datosConsulta1(nombre,email, pais, ciudad, password, rol, nombreTienda);
+        datosConsulta1(nombre, email, pais, ciudad, password, rol, nombreTienda);
     }
 
     return (
-        <div className="form-usuario">
-            <div className="contenedor-form sombra-dark" >
-                <h1>Obtener una cuenta</h1>
-
-                <form
-                    onSubmit={onSubmit}
-                >
-
-                    <div className="campo-form">
-                        <label htmlFor="nombre">Nombre</label>
-                        <input
-                            type="text"
-                            id="nombre"
-                            name="nombre"
-                            placeholder="Nombre"
-                            onChange={e => setNombre(e.target.value)}
-
-                        />
+        <article id="sign_up" className="padding_top_box padding_bottom_box">
+            <div className="container">
+                <div className="row">
+                    <div className="col-12 col-sm-12 col-md-12 col-lg-4">
+                        <div className="margin_bottom signup_title">
+                            <h1>Registrarse</h1>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad id quae reiciendis voluptates totam non dolor cupiditate magnam voluptate</p>
+                        </div>
                     </div>
+                    <div className="col-12 col-sm-12 col-md-12 col-lg-8">
+                        <form className="sign_up_form margin_top" onSubmit={onSubmit}>
+                            <label for="fullname" id="fullname" className="form-label">Nombre completo</label>
+                            <div className="input-group mb-3">
+                                <span className="input-group-text">Usuario</span>
+                                <input type="text" aria-label="First name" name="fullname" id="fullname" className="form-control" placeholder="Nombre Completo" onChange={e => setNombre(e.target.value)} />
 
-                    <div className="campo-form">
-                        <label htmlFor="email">Email</label>
-                        <input
-                            type="text"
-                            id="email"
-                            name="email"
-                            placeholder="Correo Electrónico"
-                            onChange={e => setEmail(e.target.value)}
+                            </div>
+                            <div className="mb-3">
+                                <label for="correo" className="form-label">Correo electrónico</label>
+                                <input type="email" className="form-control" name="correo" id="correo" aria-describedby="ayuda" placeholder="correo@dominio.com"
+                                    onChange={e => setEmail(e.target.value)} />
+                                <div id="ayuda" className="form-text">Nunca compartiremos tu correo con nadie</div>
+                            </div>
+                            <span>Contraseña</span>
+                            <div className="input-group mb-3 mt-2">
+                                <label for="password" className="input-group-text">Contraseña</label>
+                                <input type="password" className="form-control" name="password" id="password" placeholder="Contraseña" onChange={e => setPassword(e.target.value)} />
+                            </div>
+                            <label for="fullname" id="fullname" className="form-label">Region</label>
+                            <div className="input-group">
+                                <input className="form-control" name="Pais" placeholder="País" onChange={e => setPais(e.target.value)} />
+                                <input className="form-control" name="Ciudad" placeholder="Ciudad" onChange={e => setCiudad(e.target.value)} />
+                            </div>
 
-                        />
+                            <div className="mb-3">
+                                <label for="tienda" className="form-label"></label>
+                            </div>
+
+                            <div className="input-group mb-3 mt-2">
+                                <label for="rol" className="input-group-text">Rol</label>
+                                <input type="text" className="form-control" name="rol" id="rol" placeholder="Vendedor/Usuario" onChange={e => setRol(e.target.value)} />
+                                {rol.toLowerCase() === "vendedor" ? <>
+                                    <label for="tienda" className="input-group-text">Nombre Tienda</label>
+                                    <input type="text" className="form-control" name="tienda" id="tienda" placeholder="Red store" onChange={e => setNombreTienda(e.target.value)} />
+                                </> : <>
+                                    <label for="tienda" className="input-group-text">Nombre Tienda</label>
+                                    <input type="text" className="form-control" name="tienda" id="tienda" placeholder="Red store" disabled />
+                                </>
+                                }
+                            </div>
+
+
+                            <div className="d-flex mt-3 mb-3 form-check signup_buttons">
+                                <button type="submit" className="ms-auto button" onClick={register}>Registrarse</button>
+                            </div>
+                        </form>
                     </div>
-
-                    <div className="campo-form">
-                        <label htmlFor="pais">Pais</label>
-                        <input
-                            type="text"
-                            id="pais"
-                            name="pais"
-                            placeholder="Pais"
-                            onChange={e => setPais(e.target.value)}
-
-                        />
-                    </div>
-
-                    <div className="campo-form">
-                        <label htmlFor="ciudad">Ciudad</label>
-                        <input
-                            type="text"
-                            id="ciudad"
-                            name="ciudad"
-                            placeholder="Ciudad"
-                            onChange={e => setCiudad(e.target.value)}
-
-                        />
-                    </div>
-
-                    <div className="campo-form">
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Password"
-                            onChange={e => setPassword(e.target.value)}
-
-                        />
-                    </div>
-
-                    <div className="campo-form">
-                        <label htmlFor="Rol">Rol</label>
-                        <input
-                            type="text"
-                            id="rol"
-                            name="rol"
-                            placeholder="Vendedor/Usuario"
-                            onChange={e => setRol(e.target.value)}
-
-                        />
-                    </div>
-
-                    {rol.toLowerCase() === "vendedor" ? <div className="campo-form">
-                        <label htmlFor="nombreTienda">Nombre Tienda</label>
-                        <input
-                            type="text"
-                            id="nombreTienda"
-                            name="nombreTienda"
-                            placeholder="nombre Tienda"
-                            onChange={e => setNombreTienda(e.target.value)}
-
-                        />
-                    </div> : null}
-
-
-
-                    <div className="campo-form">
-                        <input type="submit" className=" btn-primario btn-block" onClick={register}
-                            value="Registrarme"
-                        />
-                    </div>
-                </form>
-
-                <Link to={'/login'} className="enlace-cuenta">
-                    Volver a Iniciar Sesión
-                </Link>
-                <div className=" error" style={{ color: 'yellow', borderRadius: 9, textAlign: 'center' }} >
-                    {componente}
                 </div>
             </div>
-        </div>
-
+        </article>
     );
 }
 

@@ -32,12 +32,13 @@ const DeleteProduct = ({product}) => {
 
     return (
         <div>
-
-        <span data-target={`#id${product.sku}`} onClick={() => { 
+<div className="product_item">
+        <button className="button_secundary" data-target={`#id${product.sku}`} onClick={() => { 
             handleShow(); 
             }}>
-            Eliminar Producto
-        </span>
+            Eliminar
+        </button>
+        </div>
 
         <Modal
             show={show}

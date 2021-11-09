@@ -1,0 +1,57 @@
+
+    article#sign_up .signup_title h1{
+        color: var(--color7);
+    }
+
+    article#sign_up .sign_up_form{
+        background-color: var(--color1);
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(150, 150, 150, 0.2);
+        padding: 30px;
+    }
+
+        article#sign_up .sign_up_form input{
+            background-color: var(--color1);
+            border: 1px solid var(--color4);
+            box-shadow: none;
+            color: var(--color5) !important;
+        }
+
+            article#sign_up .sign_up_form input:focus{
+                background-color: rgba(40, 26, 202, 0.05) !important;
+                border: 1px solid var(--color10) !important;
+                color: var(--color10) !important;
+                outline: none;
+            }
+
+            article#sign_up .sign_up_form input[type="checkbox"]:checked{
+                background-color: var(--color10);
+                border: 1px solid var(--color10) !important;
+            }
+
+            article#sign_up .sign_up_form input[type="checkbox"]:focus{
+                background-color: var(--color10);
+                border: 1px solid var(--color4);
+            }
+
+        article#sign_up .sign_up_form .signup_buttons input{
+            margin-right: 10px;
+        }
+
+            article#sign_up .sign_up_form .signup_buttons a:hover{
+                background-color: var(--color10);
+                color: var(--color1) !important;
+            }
+
+
+@media only screen and (max-width: 974px) {
+    article#sign_up .signup_title{
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 975px) {
+    article#sign_up .signup_title h1{
+        padding-top: 90px;
+    }
+}
