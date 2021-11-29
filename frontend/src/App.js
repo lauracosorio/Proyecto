@@ -8,6 +8,10 @@ import HomeSeller from './Pages/HomeSeller';
 import HomeUser from './Pages/HomeUser';
 import Login from './Pages/Login';
 import SignUp from './Pages/SignUp';
+import HistorialCompra from './Pages/HistorialCompra'
+import DetalleCompra from './Pages/DetalleCompra'
+import HistorialCompraStore from './Pages/HistorialCompraStore';
+import DetalleCompraStore from './Pages/DetalleCompraStore';
 
 function App() {
   
@@ -21,6 +25,10 @@ function App() {
      <Route exact path="/sign-up" component={SignUp}  />
      <Route exact path="/seller-dashboard" component={DashboarSeller}  />
      <Route exact path="/user-dashboard" component={DashboardUser}  />
+     <Route exact path="/shopping-history" component={HistorialCompra} />
+     <Route exact path="/store-shopping-history" component={HistorialCompraStore} />
+     <Route exact path="/purchase-detail" component={DetalleCompra} />
+     <Route exact path="/purchase-detail-store" component={DetalleCompraStore} />
 
    </Switch>
    </BrowserRouter>

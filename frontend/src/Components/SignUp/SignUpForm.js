@@ -73,6 +73,12 @@ const SignUpForm = () => {
             const nombre = res.data.name;
             saveToLocal("nombre", nombre);
 
+            const id = res.data._id;
+            saveToLocal("id", id)
+
+            const email = res.data.email;
+                saveToLocal("email", email)
+
             const rol = res.data.rol;
             saveToLocal("rol", rol);
 

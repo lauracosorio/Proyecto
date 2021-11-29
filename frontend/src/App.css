@@ -312,6 +312,7 @@ select:focus{
     color: var(--color5) !important;
 }
 
+
 /* @media only screen and (max-width: 750px) {
     .App{
         padding-top: 100px;

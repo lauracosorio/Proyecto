@@ -264,7 +264,7 @@ const ArticleNew = () => {
                                         <img className="imagen_fill" src={item.image} alt="Popular product" />
                                     </div>
                                     <div className="col-5 col-md-3">
-                                        <span className="tag">{item.price}</span>
+                                        <span className="tag">${item.price}</span>
                                         <h5>{item.name}</h5>
                                         <small>{item.category}</small>
                                         <small>Stock:{item.stock}</small>

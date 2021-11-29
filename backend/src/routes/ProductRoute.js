@@ -43,7 +43,7 @@ productRoute.post('/register-product', [
 productRoute.get('/get-products', async (req, res) => {
 
     const product = await Product.find()
-    console.log(product)
+    /* console.log(product) */
 
     if (product.length <= 0) {
         res.status(400);
@@ -63,7 +63,7 @@ productRoute.get(`/get-product-:sku`, async (req, res) => {
     console.log(sku)
 
     const product = await Product.findOne({ sku })
-    console.log(product)
+   /*  console.log(product) */
 
     if (!product) {
         res.status(400);
@@ -79,8 +79,8 @@ productRoute.get(`/get-product-:sku`, async (req, res) => {
 productRoute.get(`/get-products-:store`, async (req, res) => {
 
     const store = req.params.store;
-    console.log(store)
-
+ /*    console.log(store)
+ */
     const product = await Product.find({ store: store })
 
     if (!product) {
@@ -97,7 +97,7 @@ productRoute.get(`/get-products-:store`, async (req, res) => {
 
 productRoute.put(`/update-product-:sku`, async (req, res) => {
 
-    console.log(req)
+   /*  console.log(req) */
     const sku = req.params.sku;
 
     const product = await Product.findOne({ sku })

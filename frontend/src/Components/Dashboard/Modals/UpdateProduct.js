@@ -95,7 +95,7 @@ const UpdateProduct = ({ product }) => {
                 id={`id${product.sku}`}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Crear Producto</Modal.Title>
+                    <Modal.Title>Editar Producto</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form className="row g-3 registrar_form" onSubmit={onSubmit}>
@@ -105,7 +105,7 @@ const UpdateProduct = ({ product }) => {
                         </div>
                         <div className="col-md-6">
                             <label for="sku" className="form-label">SKU</label>
-                            <input type="number" className="form-control" name="sku" id="sku" maxLength="2" placeholder="1" required value={sku} onChange={e => setSku(e.target.value)} />
+                            <input type="number" className="form-control" name="sku" id="sku" maxLength="2" placeholder="1" required value={sku} onChange={e => setSku(e.target.value)}  disabled/>
                         </div>
                         <div className="col-md-6">
                             <label for="stock" className="form-label">Stock (cantidad disponible)</label>

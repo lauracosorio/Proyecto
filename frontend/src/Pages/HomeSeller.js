@@ -1,7 +1,6 @@
 import React from 'react'
 import HeaderHome from '../Components/Home/HeaderHome';
 import Nav from '../Components/Home/Nav';
-import ArticleLast from '../Components/Home/sections/articles/ArticleLast';
 import AsideOffer from '../Components/Home/sections/asides/AsideOffer';
 import ArticlePopular from '../Components/Home/sections/articles/ArticlePopular';
 import ArticleNew from '../Components/Home/sections/articles/ArticleNew';

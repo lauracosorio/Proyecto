@@ -20,11 +20,17 @@ const NavDashboard = () => {
                     </ul>
                 </div>
                 <div className="col-6 nav_right">
-                    <ol className="navlist">
-                        <li className="elementlist"><Link className="links" to="/" onClick={() => {
-                            localStorage.clear();
-                        }}>{name}</Link ></li>
-                    </ol>
+                    <ul className="navlist nav-list">
+                        <li className="elementlist"><a className="links nav-link" >{name}</a ></li>
+                        <ul>
+                            <li><Link to="/store-shopping-history">Pedidos de la tienda</Link></li>
+                            <li><Link to="/"
+                                onClick={() => {
+                                    localStorage.clear();
+                                }}
+                            >Cerrar Sesión</Link></li>
+                        </ul>
+                    </ul>
 
                     <div className="nav_mobile">
                         <span className="material-icons" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">menu</span>

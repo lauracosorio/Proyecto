@@ -37,8 +37,8 @@ const getProductByStore = async (prod) => {
 const updateProduct = async (product, sku) => {
     const { name, stock, price, category, store, image } = product;
     const Sku = sku;
-    console.log(Sku);
-    console.log(product)
+   /*  console.log(Sku);
+    console.log(product) */
 
     await Product.findOneAndUpdate({sku : sku },{
         name: name,
